@@ -12,12 +12,13 @@ from nltk import sent_tokenize
 nltk.download('punkt')
 
 dimensions_list = ['support', 'knowledge', 'conflict', 'power', 'similarity', 'fun', 'status', 'trust', 'identity', 'romance']
+main_dimensions_list = ['knowledge', 'similarity', 'trust']
 
 class TenDimensionsClassifier:
 	def __init__(self, models_dir = './models/lstm_trained_models', 
 		embeddings_dir = './embeddings', is_cuda=False):
 		"""
-		@param models_dir: the directory where the LSTM models are stored
+		@param models_dir: the directory where the LSTM.txt models are stored
 		@param embeddings_dir: the directory where the embeddings are stored. The directory must contain the following subdirectories:
 		                       word2vec/GoogleNews-vectors-negative300.wv
 		                       fasttext/wiki-news-300d-1M-subword.wv
@@ -33,6 +34,7 @@ class TenDimensionsClassifier:
 		self.em_word2vec = ExtractWordEmbeddings('word2vec', emb_dir=self.embeddings_dir)
 		self.em_fasttext = ExtractWordEmbeddings('fasttext', emb_dir=self.embeddings_dir)
 		self.dimensions_list = ['support', 'knowledge', 'conflict', 'power', 'similarity', 'fun', 'status', 'trust', 'identity', 'romance']
+		self.main_dimensions_list = ['support', 'knowledge', 'power', 'similarity', 'trust']
 
 		#load models
 		self.dim2model = {}
